@@ -1,6 +1,7 @@
 package com.tismenetski.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -32,11 +33,16 @@ public class Project {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
 
+    @Column(updatable = false)
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "project")
+    @JsonIgnore //Placing JsonIgnore here means that this information will not be sent on a request, this will ensure saving the amount of data transfer(there might be hundrerds of tasks that take a lot of space)
+    private Backlog backlog;
 
     // == Constructors ==
     public Project() {}
@@ -106,6 +112,14 @@ public class Project {
 
     public void setUpdated_At(Date updated_At) {
         this.updated_At = updated_At;
+    }
+
+    public Backlog getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(Backlog backlog) {
+        this.backlog = backlog;
     }
 
     // == Protected Fields ==
