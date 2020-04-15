@@ -44,6 +44,12 @@ public class Project {
     @JsonIgnore //Placing JsonIgnore here means that this information will not be sent on a request, this will ensure saving the amount of data transfer(there might be hundrerds of tasks that take a lot of space)
     private Backlog backlog;
 
+    @ManyToOne
+    @JsonIgnore
+    private User user;
+
+    private String projectLeader;
+
     // == Constructors ==
     public Project() {}
 
@@ -120,6 +126,22 @@ public class Project {
 
     public void setBacklog(Backlog backlog) {
         this.backlog = backlog;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getProjectLeader() {
+        return projectLeader;
+    }
+
+    public void setProjectLeader(String projectLeader) {
+        this.projectLeader = projectLeader;
     }
 
     // == Protected Fields ==

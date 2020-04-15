@@ -23,7 +23,7 @@ public class Backlog {
     @JsonIgnore // Breaks infinite recursion problem
     private Project project;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "backlog")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "backlog",orphanRemoval = true) // orphan removal when child object is no longer attached to a parent
     private List<ProjectTask> projectTasks = new ArrayList<>();
 
     public Backlog(){}

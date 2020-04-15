@@ -34,7 +34,7 @@ public class ProjectTask {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
-    @ManyToOne(fetch = FetchType.EAGER , cascade = CascadeType.REFRESH) // REFRESH  = we can delete a project task and this just "refreshes" the backlog
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "backlog_id",updatable = false, nullable = false)
     @JsonIgnore
     private Backlog backlog;
