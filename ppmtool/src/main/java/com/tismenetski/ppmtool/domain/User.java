@@ -41,6 +41,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER , mappedBy = "user", orphanRemoval = true)
     private List<Project> projects = new ArrayList<>();
 
+    // == Constructor ==
     public User(){}
 
 
