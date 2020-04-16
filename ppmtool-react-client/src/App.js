@@ -19,10 +19,6 @@ import {SET_CURRENT_USER} from "./actions/types";
 import {logout} from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoute";
 
-
-
-
-
 const jwtToken  = localStorage.jwtToken;
 
 if(jwtToken){
@@ -33,7 +29,6 @@ if(jwtToken){
       payload: decoded_jwtToken
   });
 
-
   const currentTime = Date.now()/1000;
   if(decoded_jwtToken.exp<currentTime)
   {
@@ -41,10 +36,7 @@ if(jwtToken){
     store.dispatch(logout()); // Logout the user 
     window.location.href="/"; // Redirect to main page
   }
-  
-
-}
-
+ }
 
 function App() {
   return (
@@ -55,7 +47,6 @@ function App() {
     {
       //Public Routes
     }
-
     <Route exact path="/" component={Landing}/>
     <Route exact path="/register" component={Register}/>
     <Route exact path="/login" component={Login}/>
